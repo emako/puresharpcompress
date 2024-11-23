@@ -104,6 +104,11 @@ internal static class Pura
                 isEdited = true;
                 lines[i] = line.IndentStart() + "<SignAssembly>false</SignAssembly>";
             }
+            else if (lineTrimed.StartsWith("<None Include=\"..\\..\\README.md\" Pack=\"true\" PackagePath=\"\\\" />"))
+            {
+                isEdited = true;
+                lines[i] = line.IndentStart() + "<None Include=\"..\\..\\..\\README.md\" Pack=\"true\" PackagePath=\"\\\" />";
+            }
         }
 
         if (isEdited)
