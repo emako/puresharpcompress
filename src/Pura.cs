@@ -74,7 +74,7 @@ internal static class Pura
             else if (lineTrimed == "<PackageId>SharpCompress</PackageId>")
             {
                 isEdited = true;
-                lines[i] = line.IndentStart() + "<PackageId>SharpCompressPure</PackageId>";
+                lines[i] = line.IndentStart() + "<PackageId>PureSharpCompress</PackageId>";
             }
             else if (lineTrimed.StartsWith("<VersionPrefix>"))
             {
