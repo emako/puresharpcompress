@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35506.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpCompressPure", "src\SharpCompressPure.csproj", "{E16AD76E-0B2D-4EF7-BDC2-B0FB6E812BFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpCompress", "lib\src\SharpCompress\SharpCompress.csproj", "{1748EBBE-6C0B-4DF5-9B1B-76FC54744506}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E16AD76E-0B2D-4EF7-BDC2-B0FB6E812BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E16AD76E-0B2D-4EF7-BDC2-B0FB6E812BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E16AD76E-0B2D-4EF7-BDC2-B0FB6E812BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E16AD76E-0B2D-4EF7-BDC2-B0FB6E812BFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1748EBBE-6C0B-4DF5-9B1B-76FC54744506}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1748EBBE-6C0B-4DF5-9B1B-76FC54744506}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1748EBBE-6C0B-4DF5-9B1B-76FC54744506}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1748EBBE-6C0B-4DF5-9B1B-76FC54744506}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
