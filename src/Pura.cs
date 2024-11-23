@@ -94,6 +94,16 @@ internal static class Pura
                 string version = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
                 lines[i] = line.IndentStart() + Regex.Replace(lineTrimed, @"<FileVersion>(.*?)</FileVersion>", $"<FileVersion>{version}</FileVersion>");
             }
+            else if (lineTrimed.StartsWith("<AssemblyOriginatorKeyFile>../../SharpCompress.snk</AssemblyOriginatorKeyFile>"))
+            {
+                isEdited = true;
+                lines[i] = line.IndentStart() + "<!--<AssemblyOriginatorKeyFile>../../SharpCompress.snk</AssemblyOriginatorKeyFile>-->";
+            }
+            else if (lineTrimed.StartsWith("<SignAssembly>true</SignAssembly>"))
+            {
+                isEdited = true;
+                lines[i] = line.IndentStart() + "<SignAssembly>false</SignAssembly>";
+            }
         }
 
         if (isEdited)
