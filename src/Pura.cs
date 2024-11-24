@@ -93,7 +93,8 @@ internal static class Pura
             {
                 isEdited = true;
                 string version = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
-                lines[i] = line.IndentStart() + Regex.Replace(lineTrimmed, @"<FileVersion>(.*?)</FileVersion>", $"<FileVersion>{version}</FileVersion>");
+                lines[i] = line.IndentStart() + Regex.Replace(lineTrimmed, @"<FileVersion>(.*?)</FileVersion>", $"<FileVersion>{version}</FileVersion>")
+                    + Environment.NewLine + line.IndentStart() + "<Version>$(VersionPrefix)-rc1</Version>";
             }
             else if (lineTrimmed.StartsWith("<AssemblyOriginatorKeyFile>../../SharpCompress.snk</AssemblyOriginatorKeyFile>"))
             {
@@ -108,7 +109,14 @@ internal static class Pura
             else if (lineTrimmed.StartsWith("<None Include=\"..\\..\\README.md\" Pack=\"true\" PackagePath=\"\\\" />"))
             {
                 isEdited = true;
-                lines[i] = line.IndentStart() + "<None Include=\"..\\..\\..\\README.md\" Pack=\"true\" PackagePath=\"\\\" />";
+                lines[i] = line.IndentStart() + "<None Include=\"..\\..\\..\\README.md\" Pack=\"true\" PackagePath=\"\\\" />"
+                    + Environment.NewLine + line.IndentStart() + "<None Include=\"..\\..\\..\\branding\\logo.png\" Pack=\"true\" PackagePath=\"\\\" />";
+            }
+            else if (lineTrimmed.StartsWith("<PackageReadmeFile>README.md</PackageReadmeFile>"))
+            {
+                isEdited = true;
+                lines[i] = line.IndentStart() + lineTrimmed
+                    + Environment.NewLine + line.IndentStart() + "<PackageIcon>logo.png</PackageIcon>";
             }
         }
 

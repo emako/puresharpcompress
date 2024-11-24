@@ -1,0 +1,45 @@
+<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style>
+        :root, .palette0 {
+        --color0: #d6fbfd;
+        --color1: #fff;
+        --color2: #1e5097;
+        --color3: #2871ae;
+        --color4: #cffdff;
+        --color5: #f00;
+        --color6: #2a589a;
+        --color7: rgba(255, 255, 255, 0.2);
+        --color8: rgba(255, 255, 255, 0.45);
+        --color9: rgba(55, 160, 208, 0);
+        --color10: #37a0d0;
+        --color11: rgba(255, 255, 255, 0.85);
+        --color12: #333;
+        }
+    </style>
+    <defs>
+        <radialGradient id="gradient2" gradientTransform="matrix(3.2, 0, 0, 3.2, -1, -1.1)">
+            <stop offset="0%" stop-color="var(--color0, #d6fbfd)" />
+            <stop offset="100%" stop-color="var(--color1, #fff)" stop-opacity="0" />
+        </radialGradient>
+        <radialGradient id="gradient1" gradientTransform="translate(0.5)">
+            <stop offset="0%" stop-color="var(--color4, #cffdff)" />
+            <stop offset="100%" stop-color="var(--color0, #d6fbfd)" stop-opacity="0" />
+        </radialGradient>
+        <linearGradient id="bg" gradientTransform="rotate(90)">
+            <stop offset="0%" stop-color="var(--color3, #2871ae)" />
+            <stop offset="60%" stop-color="var(--color2, #1e5097)" />
+        </linearGradient>
+    </defs>
+    <path fill="url(#bg)"
+        d="M4.598 0h6.804c1.2739 0 2.5477 0 3.5729 1.0251C16 2.0503 16 3.3241 16 4.598v6.804c0 1.2739 0 2.5477-1.0251 3.5729C13.9497 16 12.6759 16 11.402 16H4.598c-1.2739 0-2.5477 0-3.5729-1.0251C0 13.9497 0 12.6759 0 11.402V4.598c0-1.2739 0-2.5477 1.0251-3.5729C2.0503 0 3.3241 0 4.598 0z" />
+    <circle fill="var(--color1, #fff)" cx="6.5" cy="8" r="1.5" />
+    <path opacity="0.61" fill="url(#gradient2)"
+        d="M8 2C7.0725 2 6.1942 2.2104 5.4102 2.5862c5.4531 1.4868 5.4531 9.3408 0 10.8276C6.1942 13.7896 7.0725 14 8 14c3.3137 0 6-2.6863 6-6s-2.6863-6-6-6z" />
+    <path stroke-width="0.5" stroke="url(#gradient1)" fill="none"
+        d="M8 2.25c3.1756 0 5.75 2.5744 5.75 5.75S11.1756 13.75 8 13.75" />
+    <path stroke-width="0.5" stroke="url(#gradient1)" fill="none"
+        d="M5.476 13.655c1.3365-0.3644 2.3645-1.0986 3.077-2.0313C9.3527 10.5767 9.75 9.2864 9.75 8S9.3527 5.4233 8.5385 4.3763C7.826 3.4436 6.798 2.7094 5.4615 2.345" />
+    <path fill="var(--color4, #cffdff)" transform="matrix(1, 0, 0, -1, 0, 16)"
+        d="M10.0537 2.3607C9.413 2.1273 8.7214 2 8 2 4.6863 2 2 4.6863 2 8s2.6863 6 6 6c0.7013 0 1.3744-0.1203 2-0.3414v-0.0161C1.3155 14.1342 1.3334 1.8162 10.0537 2.3607z" />
+</svg>
