@@ -8,6 +8,8 @@ SharpCompress is a compression library in pure C# for .NET Framework 4.62, .NET 
 
 GitHub Actions Build - [![SharpCompress](https://github.com/adamhathcock/sharpcompress/actions/workflows/dotnetcore.yml/badge.svg)](https://github.com/adamhathcock/sharpcompress/actions/workflows/dotnetcore.yml) [![Static Badge](https://camo.githubusercontent.com/df983487fa40c99a0216f895c2bdbec35d2fb66f15a915b8cc5426269e32bd2c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f415049253230446f63732d444e446f63732d3139303038383f6c6f676f3d726561646d65266c6f676f436f6c6f723d7768697465)](https://dndocs.com/d/sharpcompress/api/index.html)
 
+This repo is use for pure C# setup project [MicaSetup](https://github.com/lemutec/MicaSetup).
+
 ## Need Help?
 
 Post Issues on Github!
