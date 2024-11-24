@@ -27,7 +27,32 @@ internal static class Pura
             string line = lines[i];
             string lineTrimmed = line.Trim();
 
-            if (lineTrimmed == "using ZstdSharp;")
+            if (lineTrimmed.StartsWith("namespace SharpCompress"))
+            {
+                isEdited = true;
+                lines[i] = line.Replace("namespace SharpCompress", "namespace PureSharpCompress");
+            }
+            else if (lineTrimmed.StartsWith("using SharpCompress"))
+            {
+                isEdited = true;
+                lines[i] = line.Replace("using SharpCompress", "using PureSharpCompress");
+            }
+            else if (lineTrimmed == "using Decoder = SharpCompress.Compressors.LZMA.RangeCoder.Decoder;")
+            {
+                isEdited = true;
+                lines[i] = "using Decoder = PureSharpCompress.Compressors.LZMA.RangeCoder.Decoder;";
+            }
+            else if (lineTrimmed.StartsWith("using static SharpCompress"))
+            {
+                isEdited = true;
+                lines[i] = line.Replace("using static SharpCompress", "using static PureSharpCompress");
+            }
+            else if (lineTrimmed.Contains("new SharpCompress"))
+            {
+                isEdited = true;
+                lines[i] = line.Replace("new SharpCompress", "new PureSharpCompress");
+            }
+            else if (lineTrimmed == "using ZstdSharp;")
             {
                 isEdited = true;
                 lines[i] = line.IndentStart() + "// " + line;
@@ -94,7 +119,7 @@ internal static class Pura
                 isEdited = true;
                 string version = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
                 lines[i] = line.IndentStart() + Regex.Replace(lineTrimmed, @"<FileVersion>(.*?)</FileVersion>", $"<FileVersion>{version}</FileVersion>")
-                    + Environment.NewLine + line.IndentStart() + "<Version>$(VersionPrefix)-rc2</Version>";
+                    + Environment.NewLine + line.IndentStart() + "<Version>$(VersionPrefix)-rc3</Version>";
             }
             //else if (lineTrimmed.StartsWith("<AssemblyOriginatorKeyFile>../../SharpCompress.snk</AssemblyOriginatorKeyFile>"))
             //{
