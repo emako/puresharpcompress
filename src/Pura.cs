@@ -96,16 +96,16 @@ internal static class Pura
                 lines[i] = line.IndentStart() + Regex.Replace(lineTrimmed, @"<FileVersion>(.*?)</FileVersion>", $"<FileVersion>{version}</FileVersion>")
                     + Environment.NewLine + line.IndentStart() + "<Version>$(VersionPrefix)-rc1</Version>";
             }
-            else if (lineTrimmed.StartsWith("<AssemblyOriginatorKeyFile>../../SharpCompress.snk</AssemblyOriginatorKeyFile>"))
-            {
-                isEdited = true;
-                lines[i] = line.IndentStart() + "<!--<AssemblyOriginatorKeyFile>../../SharpCompress.snk</AssemblyOriginatorKeyFile>-->";
-            }
-            else if (lineTrimmed.StartsWith("<SignAssembly>true</SignAssembly>"))
-            {
-                isEdited = true;
-                lines[i] = line.IndentStart() + "<SignAssembly>false</SignAssembly>";
-            }
+            //else if (lineTrimmed.StartsWith("<AssemblyOriginatorKeyFile>../../SharpCompress.snk</AssemblyOriginatorKeyFile>"))
+            //{
+            //    isEdited = true;
+            //    lines[i] = line.IndentStart() + "<!--<AssemblyOriginatorKeyFile>../../SharpCompress.snk</AssemblyOriginatorKeyFile>-->";
+            //}
+            //else if (lineTrimmed.StartsWith("<SignAssembly>true</SignAssembly>"))
+            //{
+            //    isEdited = true;
+            //    lines[i] = line.IndentStart() + "<SignAssembly>false</SignAssembly>";
+            //}
             else if (lineTrimmed.StartsWith("<None Include=\"..\\..\\README.md\" Pack=\"true\" PackagePath=\"\\\" />"))
             {
                 isEdited = true;
