@@ -101,8 +101,13 @@ internal static class Pura
             {
                 isEdited = true;
                 lines[i] = line.IndentStart() + "<PackageId>PureSharpCompress</PackageId>"
-                    + Environment.NewLine + "<AssemblyName>PureSharpCompress</AssemblyName>"
-                    + Environment.NewLine + "<RootNamespace>PureSharpCompress</RootNamespace>";
+                    + Environment.NewLine + line.IndentStart() + "<AssemblyName>PureSharpCompress</AssemblyName>"
+                    + Environment.NewLine + line.IndentStart() + "<RootNamespace>PureSharpCompress</RootNamespace>";
+            }
+            else if (lineTrimmed == "<AssemblyName>SharpCompress</AssemblyName>")
+            {
+                isEdited = true;
+                lines[i] = line.IndentStart() + "<AssemblyName>PureSharpCompress</AssemblyName>";
             }
             else if (lineTrimmed.StartsWith("<VersionPrefix>"))
             {
@@ -121,7 +126,7 @@ internal static class Pura
                 isEdited = true;
                 string version = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
                 lines[i] = line.IndentStart() + Regex.Replace(lineTrimmed, @"<FileVersion>(.*?)</FileVersion>", $"<FileVersion>{version}</FileVersion>")
-                    + Environment.NewLine + line.IndentStart() + "<Version>$(VersionPrefix)-rc5</Version>";
+                    + Environment.NewLine + line.IndentStart() + "<Version>$(VersionPrefix)-rc6</Version>";
             }
             else if (lineTrimmed.StartsWith("<AssemblyOriginatorKeyFile>../../SharpCompress.snk</AssemblyOriginatorKeyFile>"))
             {
@@ -146,6 +151,11 @@ internal static class Pura
                     + Environment.NewLine + line.IndentStart() + "<PackageIcon>logo.png</PackageIcon>";
             }
             else if (lineTrimmed.StartsWith("<Description>"))
+            {
+                isEdited = true;
+                lines[i] = line.Replace("SharpCompress", "PureSharpCompress");
+            }
+            else if (lineTrimmed.StartsWith("<AssemblyTitle>"))
             {
                 isEdited = true;
                 lines[i] = line.Replace("SharpCompress", "PureSharpCompress");
