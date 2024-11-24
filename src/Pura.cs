@@ -100,7 +100,9 @@ internal static class Pura
             else if (lineTrimmed == "<PackageId>SharpCompress</PackageId>")
             {
                 isEdited = true;
-                lines[i] = line.IndentStart() + "<PackageId>PureSharpCompress</PackageId>";
+                lines[i] = line.IndentStart() + "<PackageId>PureSharpCompress</PackageId>"
+                    + Environment.NewLine + "<AssemblyName>PureSharpCompress</AssemblyName>"
+                    + Environment.NewLine + "<RootNamespace>PureSharpCompress</RootNamespace>";
             }
             else if (lineTrimmed.StartsWith("<VersionPrefix>"))
             {
@@ -119,7 +121,7 @@ internal static class Pura
                 isEdited = true;
                 string version = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
                 lines[i] = line.IndentStart() + Regex.Replace(lineTrimmed, @"<FileVersion>(.*?)</FileVersion>", $"<FileVersion>{version}</FileVersion>")
-                    + Environment.NewLine + line.IndentStart() + "<Version>$(VersionPrefix)-rc4</Version>";
+                    + Environment.NewLine + line.IndentStart() + "<Version>$(VersionPrefix)-rc5</Version>";
             }
             else if (lineTrimmed.StartsWith("<AssemblyOriginatorKeyFile>../../SharpCompress.snk</AssemblyOriginatorKeyFile>"))
             {
@@ -142,6 +144,11 @@ internal static class Pura
                 isEdited = true;
                 lines[i] = line.IndentStart() + lineTrimmed
                     + Environment.NewLine + line.IndentStart() + "<PackageIcon>logo.png</PackageIcon>";
+            }
+            else if (lineTrimmed.StartsWith("<Description>"))
+            {
+                isEdited = true;
+                lines[i] = line.Replace("SharpCompress", "PureSharpCompress");
             }
         }
 
