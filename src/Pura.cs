@@ -25,15 +25,15 @@ internal static class Pura
         for (int i = 0; i < lines.Length; i++)
         {
             string line = lines[i];
-            string lineTrimed = line.Trim();
+            string lineTrimmed = line.Trim();
 
-            if (lineTrimed == "using ZstdSharp;")
+            if (lineTrimmed == "using ZstdSharp;")
             {
                 isEdited = true;
                 lines[i] = line.IndentStart() + "// " + line;
             }
-            else if (lineTrimed == "return new DecompressionStream(stream);"
-                  || lineTrimed == "return new DecompressionStream(inStreams.Single());")
+            else if (lineTrimmed == "return new DecompressionStream(stream);"
+                  || lineTrimmed == "return new DecompressionStream(inStreams.Single());")
             {
                 isEdited = true;
                 lines[i] = line.IndentStart() + "return default!;";
@@ -54,58 +54,58 @@ internal static class Pura
         for (int i = 0; i < lines.Length; i++)
         {
             string line = lines[i];
-            string lineTrimed = line.Trim();
+            string lineTrimmed = line.Trim();
 
-            if (lineTrimed == "<PackageReference Include=\"ZstdSharp.Port\" />")
+            if (lineTrimmed == "<PackageReference Include=\"ZstdSharp.Port\" />")
             {
                 isEdited = true;
                 lines[i] = line.IndentStart() + "<!--<PackageReference Include=\"Microsoft.Bcl.AsyncInterfaces\" />-->";
             }
-            else if (lineTrimed == "<PackageReference Include=\"Microsoft.Bcl.AsyncInterfaces\" />")
+            else if (lineTrimmed == "<PackageReference Include=\"Microsoft.Bcl.AsyncInterfaces\" />")
             {
                 isEdited = true;
                 lines[i] = line.IndentStart() + "<!--<PackageReference Include=\"Microsoft.Bcl.AsyncInterfaces\" />-->";
             }
-            else if (lineTrimed == "<PackageProjectUrl>https://github.com/adamhathcock/sharpcompress</PackageProjectUrl>")
+            else if (lineTrimmed == "<PackageProjectUrl>https://github.com/adamhathcock/sharpcompress</PackageProjectUrl>")
             {
                 isEdited = true;
                 lines[i] = line.IndentStart() + "<PackageProjectUrl>https://github.com/emako/puresharpcompress</PackageProjectUrl>"
                     + Environment.NewLine + line.IndentStart() + "<RepositoryUrl>https://github.com/emako/puresharpcompress</RepositoryUrl>";
             }
-            else if (lineTrimed == "<PackageId>SharpCompress</PackageId>")
+            else if (lineTrimmed == "<PackageId>SharpCompress</PackageId>")
             {
                 isEdited = true;
                 lines[i] = line.IndentStart() + "<PackageId>PureSharpCompress</PackageId>";
             }
-            else if (lineTrimed.StartsWith("<VersionPrefix>"))
+            else if (lineTrimmed.StartsWith("<VersionPrefix>"))
             {
                 isEdited = true;
                 string version = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
-                lines[i] = line.IndentStart() + Regex.Replace(lineTrimed, @"<VersionPrefix>(.*?)</VersionPrefix>", $"<VersionPrefix>{version}</VersionPrefix>");
+                lines[i] = line.IndentStart() + Regex.Replace(lineTrimmed, @"<VersionPrefix>(.*?)</VersionPrefix>", $"<VersionPrefix>{version}</VersionPrefix>");
             }
-            else if (lineTrimed.StartsWith("<AssemblyVersion>"))
+            else if (lineTrimmed.StartsWith("<AssemblyVersion>"))
             {
                 isEdited = true;
                 string version = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
-                lines[i] = line.IndentStart() + Regex.Replace(lineTrimed, @"<AssemblyVersion>(.*?)</AssemblyVersion>", $"<AssemblyVersion>{version}</AssemblyVersion>");
+                lines[i] = line.IndentStart() + Regex.Replace(lineTrimmed, @"<AssemblyVersion>(.*?)</AssemblyVersion>", $"<AssemblyVersion>{version}</AssemblyVersion>");
             }
-            else if (lineTrimed.StartsWith("<FileVersion>"))
+            else if (lineTrimmed.StartsWith("<FileVersion>"))
             {
                 isEdited = true;
                 string version = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
-                lines[i] = line.IndentStart() + Regex.Replace(lineTrimed, @"<FileVersion>(.*?)</FileVersion>", $"<FileVersion>{version}</FileVersion>");
+                lines[i] = line.IndentStart() + Regex.Replace(lineTrimmed, @"<FileVersion>(.*?)</FileVersion>", $"<FileVersion>{version}</FileVersion>");
             }
-            else if (lineTrimed.StartsWith("<AssemblyOriginatorKeyFile>../../SharpCompress.snk</AssemblyOriginatorKeyFile>"))
+            else if (lineTrimmed.StartsWith("<AssemblyOriginatorKeyFile>../../SharpCompress.snk</AssemblyOriginatorKeyFile>"))
             {
                 isEdited = true;
                 lines[i] = line.IndentStart() + "<!--<AssemblyOriginatorKeyFile>../../SharpCompress.snk</AssemblyOriginatorKeyFile>-->";
             }
-            else if (lineTrimed.StartsWith("<SignAssembly>true</SignAssembly>"))
+            else if (lineTrimmed.StartsWith("<SignAssembly>true</SignAssembly>"))
             {
                 isEdited = true;
                 lines[i] = line.IndentStart() + "<SignAssembly>false</SignAssembly>";
             }
-            else if (lineTrimed.StartsWith("<None Include=\"..\\..\\README.md\" Pack=\"true\" PackagePath=\"\\\" />"))
+            else if (lineTrimmed.StartsWith("<None Include=\"..\\..\\README.md\" Pack=\"true\" PackagePath=\"\\\" />"))
             {
                 isEdited = true;
                 lines[i] = line.IndentStart() + "<None Include=\"..\\..\\..\\README.md\" Pack=\"true\" PackagePath=\"\\\" />";
