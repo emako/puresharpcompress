@@ -69,7 +69,8 @@ internal static class Pura
             else if (lineTrimed == "<PackageProjectUrl>https://github.com/adamhathcock/sharpcompress</PackageProjectUrl>")
             {
                 isEdited = true;
-                lines[i] = line.IndentStart() + "<PackageProjectUrl>https://github.com/emako/sharpcompress.pure</PackageProjectUrl>";
+                lines[i] = line.IndentStart() + "<PackageProjectUrl>https://github.com/emako/puresharpcompress</PackageProjectUrl>"
+                    + Environment.NewLine + line.IndentStart() + "<RepositoryUrl>https://github.com/emako/puresharpcompress</RepositoryUrl>";
             }
             else if (lineTrimed == "<PackageId>SharpCompress</PackageId>")
             {
