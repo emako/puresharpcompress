@@ -126,17 +126,7 @@ internal static class Pura
                 isEdited = true;
                 string version = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
                 lines[i] = line.IndentStart() + Regex.Replace(lineTrimmed, @"<FileVersion>(.*?)</FileVersion>", $"<FileVersion>{version}</FileVersion>")
-                    + Environment.NewLine + line.IndentStart() + "<Version>$(VersionPrefix)-rc6</Version>";
-            }
-            else if (lineTrimmed.StartsWith("<AssemblyOriginatorKeyFile>../../SharpCompress.snk</AssemblyOriginatorKeyFile>"))
-            {
-                isEdited = true;
-                lines[i] = line.IndentStart() + "<!--<AssemblyOriginatorKeyFile>../../SharpCompress.snk</AssemblyOriginatorKeyFile>-->";
-            }
-            else if (lineTrimmed.StartsWith("<SignAssembly>true</SignAssembly>"))
-            {
-                isEdited = true;
-                lines[i] = line.IndentStart() + "<SignAssembly>false</SignAssembly>";
+                    + Environment.NewLine + line.IndentStart() + "<Version>$(VersionPrefix)</Version>";
             }
             else if (lineTrimmed.StartsWith("<None Include=\"..\\..\\README.md\" Pack=\"true\" PackagePath=\"\\\" />"))
             {
