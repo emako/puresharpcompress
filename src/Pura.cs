@@ -94,7 +94,7 @@ internal static class Pura
                 isEdited = true;
                 string version = Assembly.GetExecutingAssembly().GetName().Version!.ToString(3);
                 lines[i] = line.IndentStart() + Regex.Replace(lineTrimmed, @"<FileVersion>(.*?)</FileVersion>", $"<FileVersion>{version}</FileVersion>")
-                    + Environment.NewLine + line.IndentStart() + "<Version>$(VersionPrefix)-rc1</Version>";
+                    + Environment.NewLine + line.IndentStart() + "<Version>$(VersionPrefix)-rc2</Version>";
             }
             //else if (lineTrimmed.StartsWith("<AssemblyOriginatorKeyFile>../../SharpCompress.snk</AssemblyOriginatorKeyFile>"))
             //{
