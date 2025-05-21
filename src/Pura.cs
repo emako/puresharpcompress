@@ -91,6 +91,11 @@ internal static class Pura
                 isEdited = true;
                 lines[i] = line.IndentStart() + Regex.Replace(lineTrimmed, @"<TargetFrameworks>(.*?)</TargetFrameworks>", $"<TargetFrameworks>{"net462;net472;net48;net481;netstandard2.0;net6.0;net8.0;net9.0;"}</TargetFrameworks>");
             }
+            else if (lineTrimmed.StartsWith("<EmbedUntrackedSources>true</EmbedUntrackedSources>"))
+            {
+                isEdited = true;
+                lines[i] += Environment.NewLine + line.IndentStart() + "<GeneratePackageOnBuild>true</GeneratePackageOnBuild>";
+            }
             else if (lineTrimmed == "<PackageReference Include=\"ZstdSharp.Port\" />")
             {
                 isEdited = true;
