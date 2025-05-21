@@ -15,6 +15,10 @@ internal static class Pura
         {
             PuraCsproj(filePath);
         }
+        else if (fileInfo.Extension.Equals(".props", StringComparison.CurrentCultureIgnoreCase))
+        {
+            PuraProps(filePath);
+        }
     }
 
     public static void PuraCs(string filePath)
@@ -106,6 +110,11 @@ internal static class Pura
                 isEdited = true;
                 lines[i] = line.IndentStart() + "<!--<PackageReference Include=\"Microsoft.Bcl.AsyncInterfaces\" />-->";
             }
+            else if (lineTrimmed == "<PackageReference Include=\"System.Buffers\" />")
+            {
+                isEdited = true;
+                lines[i] = line.IndentStart() + "<!--<PackageReference Include=\"System.Buffers\" />-->";
+            }
             else if (lineTrimmed == "<ItemGroup Condition=\" '$(TargetFramework)' == 'netstandard2.0' \">")
             {
                 isEdited = true;
@@ -113,8 +122,8 @@ internal static class Pura
                 """
                   <ItemGroup Condition=" '$(VersionlessImplicitFrameworkDefine)' == 'NETFRAMEWORK' ">
                     <!--<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" />-->
-                    <PackageReference Include="System.Text.Encoding.CodePages"  />
-                    <PackageReference Include="System.Memory"  />
+                    <PackageReference Include="System.Text.Encoding.CodePages" />
+                    <PackageReference Include="System.Memory" />
                   </ItemGroup>
                   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
                 """);
@@ -177,6 +186,29 @@ internal static class Pura
             {
                 isEdited = true;
                 lines[i] = line.Replace("SharpCompress", "PureSharpCompress");
+            }
+        }
+
+        if (isEdited)
+        {
+            File.WriteAllLines(filePath, lines);
+        }
+    }
+
+    public static void PuraProps(string filePath)
+    {
+        bool isEdited = false;
+        string[] lines = File.ReadAllLines(filePath);
+
+        for (int i = 0; i < lines.Length; i++)
+        {
+            string line = lines[i];
+            string lineTrimmed = line.Trim();
+
+            if (lineTrimmed.StartsWith("<PackageVersion Include=\"System.Memory\""))
+            {
+                isEdited = true;
+                lines[i] = line.IndentStart() + Regex.Replace(lineTrimmed, "Version=\"(.*?)\"", $"Version=\"4.5.5\"");
             }
         }
 
