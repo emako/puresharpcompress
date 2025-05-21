@@ -47,6 +47,11 @@ internal static class Pura
                 isEdited = true;
                 lines[i] = line.Replace("using static SharpCompress", "using static PureSharpCompress");
             }
+            else if (lineTrimmed.StartsWith("global using SharpCompress"))
+            {
+                isEdited = true;
+                lines[i] = line.Replace("global using SharpCompress", "global using PureSharpCompress");
+            }
             else if (lineTrimmed.Contains("new SharpCompress"))
             {
                 isEdited = true;
@@ -81,7 +86,12 @@ internal static class Pura
             string line = lines[i];
             string lineTrimmed = line.Trim();
 
-            if (lineTrimmed == "<PackageReference Include=\"ZstdSharp.Port\" />")
+            if (lineTrimmed.StartsWith("<TargetFrameworks>"))
+            {
+                isEdited = true;
+                lines[i] = line.IndentStart() + Regex.Replace(lineTrimmed, @"<TargetFrameworks>(.*?)</TargetFrameworks>", $"<TargetFrameworks>{"net462;net472;net48;net481;netstandard2.0;net6.0;net8.0;net9.0;"}</TargetFrameworks>");
+            }
+            else if (lineTrimmed == "<PackageReference Include=\"ZstdSharp.Port\" />")
             {
                 isEdited = true;
                 lines[i] = line.IndentStart() + "<!--<PackageReference Include=\"Microsoft.Bcl.AsyncInterfaces\" />-->";
@@ -90,6 +100,19 @@ internal static class Pura
             {
                 isEdited = true;
                 lines[i] = line.IndentStart() + "<!--<PackageReference Include=\"Microsoft.Bcl.AsyncInterfaces\" />-->";
+            }
+            else if (lineTrimmed == "<ItemGroup Condition=\" '$(TargetFramework)' == 'netstandard2.0' \">")
+            {
+                isEdited = true;
+                lines[i] = lineTrimmed.Replace("<ItemGroup Condition=\" '$(TargetFramework)' == 'netstandard2.0' \">",
+                """
+                  <ItemGroup Condition=" '$(VersionlessImplicitFrameworkDefine)' == 'NETFRAMEWORK' ">
+                    <!--<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" />-->
+                    <PackageReference Include="System.Text.Encoding.CodePages"  />
+                    <PackageReference Include="System.Memory"  />
+                  </ItemGroup>
+                  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+                """);
             }
             else if (lineTrimmed == "<PackageProjectUrl>https://github.com/adamhathcock/sharpcompress</PackageProjectUrl>")
             {
