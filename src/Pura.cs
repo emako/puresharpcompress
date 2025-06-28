@@ -61,7 +61,7 @@ internal static class Pura
                 isEdited = true;
                 lines[i] = line.Replace("new SharpCompress", "new PureSharpCompress");
             }
-            else if (lineTrimmed == "using ZstdSharp;")
+            else if (lineTrimmed.StartsWith("using ZstdSharp"))
             {
                 isEdited = true;
                 lines[i] = line.IndentStart() + "// " + line;
